@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -19,7 +20,14 @@ namespace BankingManagerDesktopUI.ViewModels
             set => Set(ref _customers, value);
         }
 
+        public Customer Customer
+        {
+            get => _customer;
+            set => Set(ref _customer, value);
+        }
+
         private readonly SampleDataService _sampleDataService;
+        private Customer _customer;
         public ICommand LoadAsyncCommand { get; }
 
 #if DEBUG

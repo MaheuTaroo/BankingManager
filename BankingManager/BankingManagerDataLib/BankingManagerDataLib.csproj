@@ -6,10 +6,14 @@
 
   <ItemGroup>
     <None Remove="SampleData\SampleCustomers.json" />
+    <None Remove="SampleData\SampleTransactions.json" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="SampleData\SampleCustomers.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SampleData\SampleTransactions.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

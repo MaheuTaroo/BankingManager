@@ -13,7 +13,8 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding Path=Customers}">
+
+        <ListBox ItemsSource="{Binding Path=Customers}" SelectedItem="{Binding Path=Customer}" MinWidth="128">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
@@ -26,5 +27,40 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ListBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Path=Customer.Accounts, Mode=OneWay}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{Binding Path=AccountNumber}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=Transactions.Count}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" FontWeight="Bold" Text="{Binding Path=Balance, StringFormat=C2}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+
+
+        </Grid>
+        
     </Grid>
 </UserControl>
