@@ -1,8 +1,21 @@
 ﻿<Application x:Class="BankingManagerDesktopUI.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:BankingManagerDesktopUI">
+             xmlns:views="clr-namespace:BankingManagerDesktopUI.Views"
+             xmlns:vm="clr-namespace:BankingManagerDesktopUI.ViewModels">
     <Application.Resources>
-         
+         <ResourceDictionary>
+             <ResourceDictionary.MergedDictionaries>
+                 <ResourceDictionary>
+                     <DataTemplate DataType="{x:Type vm:HomeViewModel}">
+                         <views:HomeView LoadAsyncCommand="{Binding Path=LoadAsyncCommand}"/>
+                     </DataTemplate>
+
+                     <DataTemplate DataType="{x:Type vm:YesNoViewModel}">
+                         <views:YesNoDialogView/>
+                     </DataTemplate>
+                 </ResourceDictionary>
+             </ResourceDictionary.MergedDictionaries>
+         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -3,11 +3,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:views="clr-namespace:BankingManagerDesktopUI.Views"
+        xmlns:models="clr-namespace:BankingManagerDesktopUI.Models"
         xmlns:vm="clr-namespace:BankingManagerDesktopUI.ViewModels"
-        mc:Ignorable="d" d:DataContext="{d:DesignInstance vm:ShellViewModel}"
+        xmlns:views="clr-namespace:BankingManagerDesktopUI.Views"
+        Closing="ShellView_OnClosing"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance vm:ShellViewModel}"
         Title="{Binding Path=WindowTitle}" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="{x:Type views:ShellView}">
+            <Setter Property="TryCloseCommand" Value="{Binding Path=TryCloseCommand}"/>
+        </Style>
+    </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu Background="Green">
+            <Menu.Resources>
+                <Style TargetType="MenuItem">
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Style>
+            </Menu.Resources>
+            <MenuItem Header="File"/>
+            <MenuItem Header="Home" Command="{Binding Path=Navigator.NavigateToCommand}"
+                      CommandParameter="{x:Static models:ViewType.HomeView}"/>
+            <MenuItem Header="Help" Command="{Binding Path=Navigator.NavigateToCommand}"
+                      CommandParameter="{x:Static models:ViewType.AboutView}"/>
+        </Menu>
+        <ContentControl Grid.Row="1" Content="{Binding Path=Navigator.ActiveViewModel, Mode=OneWay}"/>
         
     </Grid>
 </Window>
