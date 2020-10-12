@@ -16,8 +16,8 @@ namespace BankingManagerDataLib.Models
         public Customer Customer { get; set; }
         public virtual double MonthlyServiceFee { get; set; }
         public virtual ICollection<Transaction> Transactions { get; set; }
-        public int RoutingNumber { get; }
-        public int AccountNumber { get; }
+        public int RoutingNumber { get; set; }
+        public int AccountNumber { get; set; }
         public decimal Balance => Transactions.Sum(transaction => transaction.Amount);
         protected Account(int routingNumber, int accountNumber, Customer customer)
         {

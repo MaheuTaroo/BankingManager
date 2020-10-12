@@ -22,5 +22,11 @@ namespace BankingManagerDataLib.Models
             Account = account;
             AccountId = account.AccountId;
         }
+#if DEBUG
+        protected Transaction()
+        {
+            
+        }
+#endif
     }
 }
